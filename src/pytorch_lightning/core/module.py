@@ -536,9 +536,9 @@ class LightningModule(
 
     def __to_tensor(self, value: Union[torch.Tensor, numbers.Number], name: str) -> Tensor:
         value = (
-            value.clone().detach().to(self.device)
+            value.clone().detach()
             if isinstance(value, torch.Tensor)
-            else torch.tensor(value, device=self.device)
+            else torch.tensor(value)
         )
         if not torch.numel(value) == 1:
             raise ValueError(
